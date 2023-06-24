@@ -7,16 +7,15 @@ import pro.sky.Repository.QuestionRepository;
 
 import java.util.*;
 
+@Service("math")
 
-
-@Service("java")
-
-public class JavaQuestionService implements QuestionService {
+public class MathQuestionService implements QuestionService {
     private final QuestionRepository repository;
+
 
     private final Random random = new Random();
 
-    public JavaQuestionService(@Qualifier("javaRepository") QuestionRepository repository) {
+    public MathQuestionService(@Qualifier("mathRepository") QuestionRepository repository) {
         this.repository = repository;
     }
 
@@ -30,20 +29,19 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Question add(Question question) {
         return repository.add(question);
-
     }
 
     @Override
     public Question remove(Question question) {
         return repository.remove(question);
-
     }
+
 
     @Override
     public Collection<Question> getAll() {
         return repository.getAll();
-
     }
+
 
     @Override
     public Question getRandomQuestion() {
@@ -55,7 +53,9 @@ public class JavaQuestionService implements QuestionService {
             if (i == index) {
                 return rq2;
             }
+
         }
+
         throw new IllegalStateException("Not found any question");
     }
 }

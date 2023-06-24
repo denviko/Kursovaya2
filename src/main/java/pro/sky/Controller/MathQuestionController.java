@@ -13,10 +13,10 @@ import java.util.Collection;
 @RestController
 
 
-public class JavaQuestionController {
+public class MathQuestionController {
     private final QuestionService questionService;
 
-    public JavaQuestionController(@Qualifier("java") QuestionService questionService) {
+    public MathQuestionController(@Qualifier("math") QuestionService questionService) {
         this.questionService = questionService;
     }
 
