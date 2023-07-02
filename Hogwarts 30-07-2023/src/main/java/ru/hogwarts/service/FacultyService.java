@@ -7,6 +7,7 @@ import ru.hogwarts.model.Faculty;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class FacultyService {
@@ -20,8 +21,8 @@ public class FacultyService {
     }
 
     public Faculty update(long id, Faculty faculty) {
-        if (storage.containsKey(id)) {
-            storage.put(id, faculty);
+        if (storage.containsKey(faculty.getId())) {
+            storage.put(faculty.getId(), faculty);
             return faculty;
         }
         return null;
@@ -37,6 +38,12 @@ public class FacultyService {
 
     public Collection<Faculty> getAll() {
         return storage.values();
+    }
+
+    public Collection<Faculty> findByColor(String color) {
+        return storage.values().stream()
+                .filter(it -> it.getColor().equals(color))
+                .collect(Collectors.toList());
     }
 }
 
