@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Жареная картошка",
+    "ingredients": [
+      {
+        "name": "Картофель",
+        "weight": 500,
+        "measureUnit": "гр."
+      },
+      {
+        "name": "Подсолнечное масло",
+        "weight": 2,
+        "measureUnit": "ст.л."
+      },
+      {
+        "name": "Лук репчатый",
+        "weight": 100,
+        "measureUnit": "гр."
+
+      }
+    ],
+    "Steps": {
+      "1": ""
+    }
+  }
+]

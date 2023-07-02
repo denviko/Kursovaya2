@@ -37,26 +37,7 @@
             <artifactId>mock-socket</artifactId>
             <version>1.0.5</version>
         </dependency>
-        <dependency>
-            <groupId>nl.tritales.springrestdoc</groupId>
-            <artifactId>springrestdoc</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nl.tritales.springrestdoc</groupId>
-            <artifactId>springrestdoc</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.goetschalckx</groupId>
-            <artifactId>spring-boot-logging-web</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.goetschalckx</groupId>
-            <artifactId>spring-boot-logging-web</artifactId>
-            <version>0.1.0</version>
-        </dependency>
+
 
 
     </dependencies>

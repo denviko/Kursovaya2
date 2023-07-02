@@ -11,6 +11,7 @@ import pro.sky.Model.Question;
 import java.util.Collection;
 
 @RestController
+@RequestMapping(value = "/exam/math")
 
 
 public class MathQuestionController {
