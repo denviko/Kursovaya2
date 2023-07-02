@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.hogwarts.model.Faculty;
 import ru.hogwarts.model.Faculty;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,8 @@ public class FacultyService {
     private long id = 0;
 
     public Faculty add(Faculty faculty) {
-        storage.put(id++, faculty);
+        faculty.setId(id++);
+        storage.put(faculty.getId(), faculty);
         return faculty;
     }
 
@@ -31,6 +33,10 @@ public class FacultyService {
 
     public boolean remove(Long id) {
         return storage.remove(id) != null;
+    }
+
+    public Collection<Faculty> getAll() {
+        return storage.values();
     }
 }
 

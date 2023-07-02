@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.model.Student;
 import ru.hogwarts.service.StudentService;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -31,6 +33,11 @@ public class StudentController {
     @PutMapping
     public Student update(@RequestParam Long id, @RequestBody Student student) {
         return service.update(id, student);
+    }
+
+    @GetMapping("/all")
+    public Collection<Student> all() {
+        return service.getAll();
     }
 
 
