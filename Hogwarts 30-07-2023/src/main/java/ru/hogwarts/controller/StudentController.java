@@ -34,6 +34,11 @@ public class StudentController {
     public Student update(@RequestParam Long id, @RequestBody Student student) {
         return service.update(id, student);
     }
+    @GetMapping("/age")
+
+    public Collection<Student> findByAge(@RequestParam int age) {
+        return service.findByAge(age);
+    }
 
     @GetMapping("/all")
     public Collection<Student> all() {

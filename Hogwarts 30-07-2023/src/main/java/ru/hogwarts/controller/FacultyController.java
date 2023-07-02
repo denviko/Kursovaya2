@@ -25,6 +25,11 @@ public class FacultyController {
     public Faculty find(@RequestParam Long id) {
         return service.get(id);
     }
+
+    @GetMapping("/color")
+    public Collection<Faculty> findByColor(@RequestParam String color) {
+        return service.findByColor(color);
+    }
     @DeleteMapping
 
     public boolean delete(@RequestParam Long id) {

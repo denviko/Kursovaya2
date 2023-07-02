@@ -1,12 +1,14 @@
 package ru.hogwarts.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.hogwarts.model.Student;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -39,6 +41,13 @@ public class StudentService {
     public Collection<Student> getAll() {
         return storage.values();
     }
+
+    public Collection<Student> findByAge(int age) {
+        return storage.values().stream()
+                .filter(it -> it.getAge() == age)
+                .collect(Collectors.toList());
+    }
+
 }
 
 
