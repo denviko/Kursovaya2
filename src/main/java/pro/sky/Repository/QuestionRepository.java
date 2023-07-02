@@ -1,10 +1,10 @@
-package Service;
+package pro.sky.Repository;
 
 import pro.sky.Model.Question;
 
 import java.util.Collection;
 
-public interface QuestionService {
+public interface QuestionRepository {
     Question add(String question, String answer);
 
     Question add(Question question);
@@ -12,7 +12,5 @@ public interface QuestionService {
     Question remove(Question question);
 
     Collection<Question> getAll();
-
-    Question getRandomQuestion();
 
 }
