@@ -1,16 +1,14 @@
 package ru.hogwarts.service;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.hogwarts.model.Student;
 
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StudentServiceTest {
-    StudentService service = new StudentService();
+    StudentService service = new StudentService(repository);
 
     @Test
     void testAdd() {

@@ -1,54 +1,61 @@
 package ru.hogwarts.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+import ru.hogwarts.Repository.StudentRepository;
 import ru.hogwarts.model.Student;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 
 public class StudentService {
-    private final Map<Long, Student> storage = new HashMap<>();
-    private long id = 0;
+    private final StudentRepository repository;
 
-    public Student add(Student student) {
-        student.setId(id++);
-        storage.put(student.getId(), student);
-        return student;
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
     }
 
-    public Student update(long id, Student student) {
-        if (storage.containsKey(id)) {
-            storage.put(id, student);
-            return student;
-        }
-        return null;
+
+    public Student add(Student student) {
+        return repository.save(student);
+    }
+
+    public Student update(Student student) {
+        return repository.findById(student.getId())
+                .map(entity -> {
+                    entity.setAge(student.getAge());
+                    entity.setName(student.getName());
+                    return repository.save(entity);
+                })
+                .orElse(null);
+
+
     }
 
     public Student get(Long id) {
-        return storage.get(id);
+        return repository.findById(id).orElse(null);
     }
 
-    public boolean remove(Long id) {
-        return storage.remove(id) != null;
+    public void remove(Long id) {
+        repository.deleteById(id);
     }
 
     public Collection<Student> getAll() {
-        return storage.values();
+        return repository.findAll();
     }
 
-    public Collection<Student> findByAge(int age) {
-        return storage.values().stream()
-                .filter(it -> it.getAge() == age)
-                .collect(Collectors.toList());
+    public Collection<Student> findByAgeBetween(int minAge, int maxAge) {
+        return repository.findAllByAgeBetween(minAge, maxAge);
     }
 
-}
+
+    //public Collection<Student> findByAge(int age) {
+    //   return storage.values().stream()
+    //            .filter(it -> it.getAge() == age)
+    //           .collect(Collectors.toList());
+    }
+
 
 
 
