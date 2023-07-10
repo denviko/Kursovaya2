@@ -1,7 +1,9 @@
 package ru.hogwarts.service;
 
 import org.springframework.stereotype.Service;
+import ru.hogwarts.DTO.FacultyDTO;
 import ru.hogwarts.Repository.StudentRepository;
+import ru.hogwarts.model.Faculty;
 import ru.hogwarts.model.Student;
 
 import java.util.Collection;
@@ -26,6 +28,7 @@ public class StudentService {
                 .map(entity -> {
                     entity.setAge(student.getAge());
                     entity.setName(student.getName());
+                    entity.setFaculty(student.getFaculty());
                     return repository.save(entity);
                 })
                 .orElse(null);
@@ -48,6 +51,18 @@ public class StudentService {
     public Collection<Student> findByAgeBetween(int minAge, int maxAge) {
         return repository.findAllByAgeBetween(minAge, maxAge);
     }
+
+    public FacultyDTO findFaculty(Long id) {
+       return repository.findById(id).map(student -> {
+            FacultyDTO dto = new FacultyDTO();
+            dto.setId(student.getFaculty().getId());
+            dto.setName(student.getFaculty().getName());
+            dto.setColor(student.getFaculty().getColor());
+            return dto;
+        }).orElse(null);
+
+    }
+
 
 
     //public Collection<Student> findByAge(int age) {

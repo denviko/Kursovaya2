@@ -46,6 +46,12 @@ public class FacultyController {
     public Faculty update(@RequestParam Long id, @RequestBody Faculty faculty) {
         return service.update(faculty);
     }
+
+    @GetMapping("/{id}/students")
+    public Collection<Student> getStudents(@PathVariable Long id) {
+        return service.get(id).getStudents();
+    }
+
     @GetMapping("/all")
     public Collection<Faculty> all() {
         return service.getAll();

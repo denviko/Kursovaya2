@@ -1,6 +1,7 @@
 package ru.hogwarts.service;
 
 import org.junit.jupiter.api.Test;
+import ru.hogwarts.Repository.StudentRepository;
 import ru.hogwarts.model.Student;
 
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StudentServiceTest {
+
     StudentService service = new StudentService(repository);
 
     @Test
@@ -50,5 +52,6 @@ class StudentServiceTest {
         assertThat(service.getAll()).isEqualTo(expected);
 
     }
+
 
 }

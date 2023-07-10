@@ -36,7 +36,7 @@ public class FacultyService {
     }
 
     public void  remove(Long id) {
-        repository.deleteById(id);
+        repository.findById(id).ifPresent(repository::delete);
     }
 
     public Collection<Faculty> getAll() {
