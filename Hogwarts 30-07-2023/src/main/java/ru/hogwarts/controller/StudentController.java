@@ -1,6 +1,8 @@
 package ru.hogwarts.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.DTO.FacultyDTO;
+import ru.hogwarts.model.Faculty;
 import ru.hogwarts.model.Student;
 import ru.hogwarts.service.StudentService;
 
@@ -24,21 +26,35 @@ public class StudentController {
     public Student find(@RequestParam Long id) {
         return service.get(id);
     }
+
+    @GetMapping("/findByAgeBetween")
+    public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
+        return service.findByAgeBetween(minAge, maxAge);
+
+    }
+
     @DeleteMapping
 
-    public boolean delete(@RequestParam Long id) {
-        return service.remove(id);
+    public void delete(@RequestParam Long id) {
+        service.remove(id);
+
     }
 
     @PutMapping
-    public Student update(@RequestParam Long id, @RequestBody Student student) {
-        return service.update(id, student);
+    public Student update(@RequestBody Student student) {
+        return service.update(student);
     }
-    @GetMapping("/age")
 
-    public Collection<Student> findByAge(@RequestParam int age) {
-        return service.findByAge(age);
+    @GetMapping("/{id}/faculty/")
+    public FacultyDTO findFaculty(@PathVariable Long id) {
+        return service.findFaculty(id);
     }
+
+
+    // @GetMapping("/age")
+    // public Collection<Student> findByAge(@RequestParam int age) {
+    //   return service.findByAge(age);
+    // }
 
     @GetMapping("/all")
     public Collection<Student> all() {
