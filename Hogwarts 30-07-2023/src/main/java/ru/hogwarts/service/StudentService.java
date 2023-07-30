@@ -7,6 +7,7 @@ import ru.hogwarts.model.Faculty;
 import ru.hogwarts.model.Student;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,7 +54,7 @@ public class StudentService {
     }
 
     public FacultyDTO findFaculty(Long id) {
-       return repository.findById(id).map(student -> {
+        return repository.findById(id).map(student -> {
             FacultyDTO dto = new FacultyDTO();
             dto.setId(student.getFaculty().getId());
             dto.setName(student.getFaculty().getName());
@@ -63,13 +64,20 @@ public class StudentService {
 
     }
 
+    public long getStudentQuantity() {
+        return repository.getStudentQuantity();
 
-
-    //public Collection<Student> findByAge(int age) {
-    //   return storage.values().stream()
-    //            .filter(it -> it.getAge() == age)
-    //           .collect(Collectors.toList());
     }
+
+    public double getAvgAge() {
+        return repository.getAverageAge();
+    }
+
+    public List<Student> getLastStudents() {
+        return repository.getLastStudents();
+    }
+}
+
 
 
 
