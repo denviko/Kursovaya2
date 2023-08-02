@@ -27,21 +27,25 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 
 class StudentControllerTest {
     @WebMvcTest
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
     @MockBean
-    private StudentRepository studentRepository;
+    StudentRepository studentRepository;
     @MockBean
-    private AvatarRepository avatarRepository;
+     AvatarRepository avatarRepository;
     @MockBean
-    private FacultyRepository facultyRepository;
+     FacultyRepository facultyRepository;
     @SpyBean
-    private StudentService studentService;
+     StudentService studentService;
     @SpyBean
-    private AvatarService avatarService;
+     AvatarService avatarService;
     @SpyBean
-    private FacultyService facultyService;
+     FacultyService facultyService;
     @InjectMocks
-    private StudentController studentController;
+     StudentController studentController;
+
+    StudentControllerTest() {
+    }
+
     @Test
     public void saveStudentTest() throws Exception {
         final Long id = 1L;
@@ -69,9 +73,9 @@ class StudentControllerTest {
         mockMvc.perform((MockMvcRequestBuilders
                         .get("/student?id=4")
                         .accept(MediaType.APPLICATION_JSON))
-                andExpect(status().isOk())
-                andExpect(jsonPath("$.id").value(id))
-                andExpect(jsonPath("$.name").value(name)));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(id))
+                .andExpect(jsonPath("$.name").value(name)));
 
     }
     @Test

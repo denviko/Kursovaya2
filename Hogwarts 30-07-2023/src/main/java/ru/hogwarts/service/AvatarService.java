@@ -1,6 +1,8 @@
 package ru.hogwarts.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.Repository.AvatarRepository;
@@ -9,6 +11,7 @@ import ru.hogwarts.model.Avatar;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 
@@ -55,6 +58,12 @@ public class AvatarService {
 
     public Avatar findAvatar(long studentId) {
         return repository.findByStudentId(studentId).orElse(new Avatar());
+
+    }
+
+    public List<Avatar> getAvatarPage(int pageNumber, int pageSize) {
+        var request = PageRequest.of(pageNumber, pageSize);
+        return repository.findAll(request).getContent();
 
     }
 
