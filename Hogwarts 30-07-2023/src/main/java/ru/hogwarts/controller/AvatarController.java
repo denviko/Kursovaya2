@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 @RequestMapping("/avatar")
 @RestController
@@ -56,6 +57,11 @@ public class AvatarController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/avatar")
+    public List<Avatar> getPage(@RequestParam int page, @RequestParam int size) {
+        return service.getAvatarPage(page, size);
     }
 
 }
