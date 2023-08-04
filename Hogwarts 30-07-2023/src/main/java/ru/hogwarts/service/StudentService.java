@@ -1,18 +1,19 @@
 package ru.hogwarts.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.DTO.FacultyDTO;
 import ru.hogwarts.Repository.StudentRepository;
-import ru.hogwarts.model.Faculty;
 import ru.hogwarts.model.Student;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 
 public class StudentService {
+    private final static Logger logger = LoggerFactory.getLogger(StudentService.class);
     private final StudentRepository repository;
 
     public StudentService(StudentRepository repository) {
@@ -21,6 +22,7 @@ public class StudentService {
 
 
     public Student add(Student student) {
+        logger.info("Invoked add student method with argument: {}", student);
         return repository.save(student);
     }
 
@@ -38,14 +40,17 @@ public class StudentService {
     }
 
     public Student get(Long id) {
+        logger.info("Invoked get student by id method with argument {}", id);
         return repository.findById(id).orElse(null);
     }
 
     public void remove(Long id) {
+        logger.info("Invoked add student method");
         repository.deleteById(id);
     }
 
     public Collection<Student> getAll() {
+        logger.info("Invoked getAll student method");
         return repository.findAll();
     }
 
