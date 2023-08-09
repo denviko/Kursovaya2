@@ -20,6 +20,7 @@ import java.util.List;
 public class AvatarController {
     private final AvatarService service;
 
+
     public AvatarController(AvatarService service) {
         this.service = service;
     }

@@ -61,6 +61,12 @@ public class StudentController {
         return service.getAll();
     }
 
+    @GetMapping("/by-name")
+    public Collection<String> findByName() {
+        return service.findByName();
+    }
+
+
     @GetMapping("/avg-age")
     public double avgAge() {
         return service.getAvgAge();
