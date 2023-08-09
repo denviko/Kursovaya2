@@ -5,6 +5,7 @@ import ru.hogwarts.Repository.FacultyRepository;
 import ru.hogwarts.model.Faculty;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +36,7 @@ public class FacultyService {
         return repository.findById(id).orElse(null);
     }
 
-    public void  remove(Long id) {
+    public void remove(Long id) {
         repository.findById(id).ifPresent(repository::delete);
     }
 
@@ -48,11 +49,15 @@ public class FacultyService {
 
     }
 
-    // public Collection<Faculty> findByColor(String color) {
-    //     return storage.values().stream()
-    //            .filter(it -> it.getColor().equals(color))
-    //          .collect(Collectors.toList());
+    public String getLongestFacultyName() {
+        return repository.findAll()
+                .stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElseThrow(() -> new IllegalStateException("Not found any faculty"));
+
     }
+}
 
 
 

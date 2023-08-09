@@ -61,5 +61,26 @@ public class StudentController {
         return service.getAll();
     }
 
+    @GetMapping("/by-name")
+    public Collection<String> findByName() {
+        return service.findByName();
+    }
+
+
+    @GetMapping("/avg-age")
+    public double avgAge() {
+        return service.getAvgAge();
+    }
+
+
+    @GetMapping("/quantity")
+    public long quantity() {
+        return service.getStudentQuantity();
+    }
+
+    @GetMapping("/last")
+    public Collection<Student> last() {
+        return service.getLastStudents();
+    }
 
 }
