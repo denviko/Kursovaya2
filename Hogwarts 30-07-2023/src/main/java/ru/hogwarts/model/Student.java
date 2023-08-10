@@ -56,6 +56,7 @@ public class Student {
         this.faculty = faculty;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +69,8 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id, name, age, faculty);
     }
+
+
 
     @Override
     public String toString() {
