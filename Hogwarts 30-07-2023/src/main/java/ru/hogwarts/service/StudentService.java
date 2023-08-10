@@ -100,8 +100,60 @@ public class StudentService {
                 .orElse(0d);
 
     }
+    public void printNotSynchronized() {
+        var students = repository.findAll().stream().limit(6).collect(Collectors.toList());
+        System.out.println("=================");
+
+        students.forEach(System.out::println);
+        System.out.println("=================");
 
 
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+
+        new Thread(() -> {
+            System.out.println(students.get(2));
+            System.out.println(students.get(3));
+
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(students.get(4));
+            System.out.println(students.get(5));
+
+        }).start();
+        System.out.println("=================");
+
+
+    }
+
+    public void printSynchronized() {
+        var students = repository.findAll().stream().limit(6).collect(Collectors.toList());
+        System.out.println("=================");
+
+        students.forEach(System.out::println);
+        System.out.println("=================");
+
+        print(students.get(0));
+        print(students.get(1));
+
+        new Thread(() -> {
+            print(students.get(2));
+            print(students.get(3));
+
+        }).start();
+
+        new Thread(() -> {
+            print(students.get(4));
+            print(students.get(5));
+
+        }).start();
+        System.out.println("=================");
+    }
+
+    private synchronized void print(Object obj) {
+        System.out.println(obj.toString());
+    }
 }
 
 

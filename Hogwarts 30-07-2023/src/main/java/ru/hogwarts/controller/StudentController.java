@@ -83,4 +83,12 @@ public class StudentController {
         return service.getLastStudents();
     }
 
+    @GetMapping("/printSync")
+    public void printSync() {
+        service.printSynchronized();
+    }
+    @GetMapping("/printNotSync")
+    public void printNotSync() {
+        service.printNotSynchronized();
+
 }
